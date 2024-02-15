@@ -1,0 +1,86 @@
+﻿@model MvcCoches.Models.Coche
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Coche</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label"></label>
+                <input asp-for="Modelo" class="form-control" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VelocidadMaxima" class="control-label"></label>
+                <input asp-for="VelocidadMaxima" class="form-control" />
+                <span asp-validation-for="VelocidadMaxima" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Motor" class="control-label">Motor</label>
+                <input type="checkbox" id="Motor"/>
+                <span asp-validation-for="Motor" class="text-danger"></span>
+            </div>
+            <div id="motorDetails" style="display:none;">
+                <div class="form-group">
+                    <label asp-for="Motor.Tipo" class="control-label"></label>
+                    <input asp-for="Motor.Tipo" class="form-control" />
+                    <span asp-validation-for="Motor.Tipo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Motor.Caballos" class="control-label"></label>
+                    <input asp-for="Motor.Caballos" class="form-control" />
+                    <span asp-validation-for="Motor.Caballos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Motor.Cilindrada" class="control-label"></label>
+                    <input asp-for="Motor.Cilindrada" class="form-control" />
+                    <span asp-validation-for="Motor.Cilindrada" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Motor.Turbo" class="control-label">Turbo</label>
+                    <input asp-for="Motor.Turbo" type="checkbox" />
+                    <span asp-validation-for="Motor.Turbo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListCoches">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Agrega un script para mostrar/ocultar los detalles del motor según el estado del checkbox
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkbox = document.getElementById('Motor');
+            var motorDetails = document.getElementById('motorDetails');
+
+            checkbox.addEventListener('change', function () {
+                motorDetails.style.display = checkbox.checked ? 'block' : 'none';
+            });
+        });
+    </script>
+}
